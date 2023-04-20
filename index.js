@@ -1,7 +1,5 @@
-// const {program }= require('commander')
 const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
-// const argv = require('yargs').argv;
 
 const contacts = require('./contacts');
 
