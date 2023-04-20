@@ -43,12 +43,12 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 
 // invokeAction({ action: 'list' });
 // invokeAction({ action: 'getOne', id: 'rsKkOQUi80UsgVPCcLZZW' });
-// invokeAction({
-//   action: 'add',
-//   name: 'Mister Smith',
-//   email: 'test6@test.com',
-//   phone: '000 888 55 55',
-// });
+invokeAction({
+  action: 'add',
+  name: 'White Black',
+  email: 'test3@test.com',
+  phone: '000 666 55 55',
+});
 // invokeAction({
 //   action: 'update',
 //   id: 'ZCXZrHqmxlMP6cSmK9jLX',
@@ -56,4 +56,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 //   email: 'test8@test.com',
 //   phone: '000 777 88 77',
 // });
-// invokeAction({ action: 'remove', id: 'mGVtXFtf2Z8rZ5CMtsloe' });
+// invokeAction({
+//   action: 'remove',
+//   id: 'ABMQis-qv-xZnO0joaDWJ',
+// });
