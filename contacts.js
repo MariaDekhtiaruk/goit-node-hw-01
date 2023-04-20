@@ -16,6 +16,8 @@ async function listContacts() {
   return JSON.parse(result);
 }
 async function getContactById(contactId) {
+  // Щоб yargs сприймав числове id як строку, потрібно прописати String(id)
+  const jsonId = String(contactId);
   const contacts = await listContacts();
   const result = contacts.find((item) => item.id === contactId);
   return result || null;
@@ -37,6 +39,7 @@ async function addContact({ name, email, phone }) {
 
 async function updateContactById(contactId, { name, email, phone }) {
   const contacts = await listContacts();
+  const jsonId = String(contactId);
   const index = contacts.findIndex((item) => item.id === contactId);
   if (index === -1) return null;
   contacts[index] = { contactId, name, email, phone };
@@ -46,6 +49,7 @@ async function updateContactById(contactId, { name, email, phone }) {
 
 async function removeContact(contactId) {
   const contacts = await listContacts();
+  const jsonId = String(contactId);
   const index = contacts.findIndex((item) => item.id === contactId);
   if (index === -1) return null;
   const [result] = contacts.splice(index, 1);
