@@ -1,29 +1,59 @@
-// import greeting from './db/index.js';
+const contacts = require('./contacts');
+// const argv = require('yargs').argv;
 
-const fs = require('fs/promises');
-
-const filePath = './db/data.txt';
-const fileOperation = async ({ action, data }) => {
+const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
-    case 'read':
-      const result = await fs.readFile(filePath, 'utf-8');
-      //щоб не було Buffer використали utf-8 або toString
-      //   const text = result.toString();
-      console.log(result);
+    case 'list':
+      const allContacts = await contacts.listContacts();
+      console.log(allContacts);
       break;
+
+    case 'getOne':
+      const oneContact = await contacts.getContactById(id);
+      console.log(oneContact);
+      break;
+
     case 'add':
-      const add = await fs.appendFile(filePath, data);
+      const newContact = await contacts.addContact({
+        name,
+        email,
+        phone,
+      });
+      console.log(newContact);
       break;
-    case 'replace':
-      const replace = await fs.writeFile(filePath, data);
+
+    case 'update':
+      const updateContact = await contacts.updateContactById(id, {
+        name,
+        email,
+        phone,
+      });
+      console.log(updateContact);
       break;
+
+    case 'remove':
+      const deleteContact = await contacts.removeContact(id);
+      console.log(deleteContact);
+      break;
+
     default:
-      console.log('Unknown action');
-      break;
+      console.warn('\x1B[31m Unknown action type!');
   }
 };
-// fileOperation({ action: 'read' });
-// fileOperation({ action: 'add', data: '\ngood night' });
-// fileOperation({ action: 'replace', data: 'Good Morning' });
-// fs.rename(filePath, './quote.txt');
-fs.unlink('./quote.txt');
+
+// invokeAction({ action: 'list' });
+// invokeAction({ action: 'getOne', id: 'rsKkOQUi80UsgVPCcLZZW' });
+// invokeAction({
+//   action: 'add',
+//   name: 'Mister Smith',
+//   email: 'test6@test.com',
+//   phone: '000 888 55 55',
+// });
+// invokeAction({
+//   action: 'update',
+//   id: 'ZCXZrHqmxlMP6cSmK9jLX',
+//   name: 'agent 008',
+//   email: 'test8@test.com',
+//   phone: '000 777 88 77',
+// });
+// invokeAction({ action: 'remove', id: 'mGVtXFtf2Z8rZ5CMtsloe' });
